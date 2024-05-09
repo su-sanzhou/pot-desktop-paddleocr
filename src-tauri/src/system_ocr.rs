@@ -109,21 +109,40 @@ pub fn system_ocr(app_handle: tauri::AppHandle, lang: &str) -> Result<String, St
     let mut app_cache_dir_path = cache_dir().expect("Get Cache Dir Failed");
     app_cache_dir_path.push(&app_handle.config().tauri.bundle.identifier);
     app_cache_dir_path.push("pot_screenshot_cut.png");
-    let mut args = ["", ""];
-    if lang != "auto" {
-        args = ["-l", lang];
+    //let mut args = ["", ""];
+    //if lang != "auto" {
+    //    args = ["-l", lang];
+    //}
+    //把pot的语言修改成paddle ocr支持的语言
+    let mut lang_arg = "";
+    if lang == "eng"{
+        lang_arg = "en";
     }
-
-    let output = match std::process::Command::new("tesseract")
+    else if lang == "auto"{
+       lang_arg = "ch"; 
+    }
+    else if lang == "chi_tra"{
+        lang_arg = "chinese_cht";
+    }
+    else {
+        lang_arg = "ch";
+    }
+    //let output = match std::process::Command::new("tesseract")
+    //    .arg(app_cache_dir_path.to_str().unwrap())
+    //    .arg("stdout")
+    //    .args(args)
+    //    .output()
+    let output = match std::process::Command::new("pot_ocr.sh")
         .arg(app_cache_dir_path.to_str().unwrap())
+        .arg(lang_arg)
         .arg("stdout")
-        .args(args)
         .output()
     {
         Ok(v) => v,
         Err(e) => {
             if e.to_string().contains("os error 2") {
-                return Err("Tesseract not installed!".to_string());
+                //return Err("Tesseract not installed!".to_string());
+                return Err("paddleocr not installed!".to_string());
             }
             return Err(e.to_string());
         }
