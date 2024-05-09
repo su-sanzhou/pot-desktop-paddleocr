@@ -15,6 +15,7 @@
 <div align="center">
 
 <h3>中文 | <a href='./README_EN.md'>English</a></h3>
+</div>
 # 介绍
 - 本fork版本将linux下面自带的tesseract引擎换成了paddleocr离线版引擎，因为原来的插件版paddleocr仅支持windows。
 - 所以需要安装2个东西，一个是paddle ocr引擎，一个是修改版的pot，其中paddle ocr引擎安装附后，修改的pot版本仅有deb格式，可以从release下载，国内也可以从此下载，应该还是比较快的。
