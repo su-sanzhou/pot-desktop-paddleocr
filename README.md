@@ -16,12 +16,14 @@
 
 <h3>中文 | <a href='./README_EN.md'>English</a></h3>
 </div>
-# 介绍
+
+# 1.介绍
 - 本fork版本将linux下面自带的tesseract引擎换成了paddleocr离线版引擎，因为原来的插件版paddleocr仅支持windows。
 - 所以需要安装2个东西，一个是paddle ocr引擎，一个是修改版的pot，其中paddle ocr引擎安装附后，修改的pot版本仅有deb格式，可以从release下载，国内也可以从此下载，应该还是比较快的。
 - 如果有更新提醒，记得不要更新，因为更新后就变成原来的tesseract版本了
 
-# 安装paddle ocr离线引擎
+# 2.安装
+## 2.1 安装paddle ocr离线引擎
 - 仅验证了debian 12、python3.11.2
 ```
 sudo apt install python3 python3-venv python3-pip
@@ -40,10 +42,10 @@ chmod a+x pot_ocr.sh
 sudo cp -rv pot_ocr.sh /usr/bin/ #pot_ocr.sh也在本仓库根目录
 sudo cp -rv paddleocr.py /opt/paddleocr/lib/python3.11/site-packages/paddleocr/ #这个解决了后面发现的bug
 ```
-# 安装pot
-## 安装编译好的deb
+## 2.2 安装pot
+### 2.2.1 安装编译好的deb
 - 下载deb包，然后sudo dpkg -i pot_2.7.10_x86-64.deb
-## 手动编译
+### 2.2.2 手动编译
 - 安装rust编译环境(Rust >= 1.70.0)
 ```
 curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
@@ -83,7 +85,7 @@ pnpm tauri build
 如果正常，应该在pot-desktop-paddleocr/src-tauri/target/release/bundle/deb/下生成了deb文件,就可以
 这样安装sudo dpkg -i src-tauri/target/release/bundle/deb/pot_2.7.10_amd64.deb
 
-# 发现的bug及解决办法
+# 3.发现的bug及解决办法
 - bug 如下
 ```
 Traceback (most recent call last):
@@ -98,11 +100,11 @@ NameError: name 'predict_system' is not defined
 ```
 - 解决办法
 参照[这个paddle ocr的pr](https://github.com/PaddlePaddle/PaddleOCR/pull/11847/commits/7585b2e78ab25517dfd9ada6b31bb60fdecfac80)修改/opt/paddleocr/lib/python3.11/site-packages/paddleocr/paddleocr.py即可
-# 使用及其他
+# 4.使用及其他
 使用方式与原版pot一样，目前仅支持简体中文、繁体中文、英文。
 
 
-# todo
+# 5.todo
 - 其他语言支持
 - 删除deb打包依赖的tesseract-ocr
 
