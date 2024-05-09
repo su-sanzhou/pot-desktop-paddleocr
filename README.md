@@ -37,9 +37,9 @@ cd ..
 #后面的requirements.txt、pot_ocr.py、pot_ocr.sh、paddleocr.py均在这个库的paddleocr目录下
 pip3 install -r requirements.txt -i https://mirror.baidu.com/pypi/simple
 exit #退出root 用户
-sudo cp -rv pot_ocr.py /opt/paddleocr/ #pot_ocr.py文件在本仓库根目录
+sudo cp -rv pot_ocr.py /opt/paddleocr/ 
 chmod a+x pot_ocr.sh
-sudo cp -rv pot_ocr.sh /usr/bin/ #pot_ocr.sh也在本仓库根目录
+sudo cp -rv pot_ocr.sh /usr/bin/ 
 sudo cp -rv paddleocr.py /opt/paddleocr/lib/python3.11/site-packages/paddleocr/ #这个解决了后面发现的bug
 ```
 ## 2.2 安装pot
