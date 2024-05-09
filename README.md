@@ -44,7 +44,7 @@ sudo cp -rv paddleocr.py /opt/paddleocr/lib/python3.11/site-packages/paddleocr/ 
 ```
 ## 2.2 安装pot
 ### 2.2.1 安装编译好的deb
-- 下载deb包，然后sudo dpkg -i pot_2.7.10_x86-64.deb
+- 下载deb包，然后sudo dpkg -i pot_2.7.10_amd64.deb
 ### 2.2.2 手动编译
 - 安装rust编译环境(Rust >= 1.70.0)
 ```
@@ -100,6 +100,8 @@ NameError: name 'predict_system' is not defined
 ```
 - 解决办法
 参照[这个paddle ocr的pr](https://github.com/PaddlePaddle/PaddleOCR/pull/11847/commits/7585b2e78ab25517dfd9ada6b31bb60fdecfac80)修改/opt/paddleocr/lib/python3.11/site-packages/paddleocr/paddleocr.py即可
+
+本仓库的paddleocr/paddleocr.py已经修复了这个bug
 # 4.使用及其他
 使用方式与原版pot一样，目前仅支持简体中文、繁体中文、英文。
 
@@ -107,4 +109,5 @@ NameError: name 'predict_system' is not defined
 # 5.todo
 - 其他语言支持
 - 删除deb打包依赖的tesseract-ocr
+- 写readme的英文版本
 
