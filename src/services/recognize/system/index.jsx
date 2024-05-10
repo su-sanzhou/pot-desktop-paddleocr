@@ -77,13 +77,13 @@ export async function recognize(_, lang) {
     switch (osType) {
         case 'Linux':
             result = await invoke('system_ocr', { lang: linuxLangMap[lang] });
-            if (lang === Language.auto && (await detect(result)) === Language.zh_cn) {
-                result = result.replaceAll(' ', '');
-            } else {
-                if (lang === Language.zh_cn || lang === Language.zh_tw) {
-                    result = result.replaceAll(' ', '');
-                }
-            }
+            //if (lang === Language.auto && (await detect(result)) === Language.zh_cn) {
+            //    result = result.replaceAll(' ', '');
+            //} else {
+            //    if (lang === Language.zh_cn || lang === Language.zh_tw) {
+            //        result = result.replaceAll(' ', '');
+            //    }
+            //}
             return result.trim();
         case 'Darwin':
             result = await invoke('system_ocr', { lang: macOSLangMap[lang] });
